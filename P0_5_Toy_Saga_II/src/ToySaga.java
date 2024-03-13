@@ -118,13 +118,21 @@ public class ToySaga extends PApplet { // TODO declare ToySaga to inherit from t
    */
   @Override
   public void setup() {
-    
-    this.getSurface().setTitle("Toy Saga II");
 
+    // sets the title and graphic environment properties of the display window
+    this.getSurface().setTitle("P5 Toy Saga v2.0");
+    this.textAlign(CENTER, CENTER);// horizontal alignment: center, vertical alignment: center
+    this.imageMode(CENTER);// interprets the second and third parameters of image() as the
+    // image’s center point.
+    this.rectMode(CORNERS); // interprets the first two parameters of rect() as the location
+    // of one corner, and the third and fourth parameters as the
+    // location of the opposite corner.
+    this.focused = true;// sets the processing program to be focused (true), meaning that
+    // it is active and will accept input from mouse or keyboard
+    this.mode = DAY_MODE;
     backgroundImage = this.loadImage(DAY_BACKGROUND);
-    
-    mode = DAY_MODE;
-    }
+    drawableObjects = new ArrayList<Drawable>();
+  }
 
   /**
    * This callback method continuously draws and updates the application display window. It is
@@ -136,7 +144,10 @@ public class ToySaga extends PApplet { // TODO declare ToySaga to inherit from t
    */
   @Override
   public void draw() {
-  
+    this.image(backgroundImage,this.width/2,this.height/2);
+    for (Drawable object : drawableObjects){
+      object.draw();
+    }
   }
 
   /**
